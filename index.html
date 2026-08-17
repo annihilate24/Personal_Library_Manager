@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Personal Library Manager</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-content=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body>
+    <button class="toggle-btn" id="toggleBtn">☰</button>
+    <div class="sidebar" id="sidebar">
+        <div class="logo">
+
+            <h2 class="logo-text">Personal Library Manager</h2>
+        </div>
+        <div class="options1">
+            <a href="#" class="nav-item active" data-page="dashboard-page"><i class="fas fa-th-large"></i>Dashboard</a>
+            <a href="#" class="nav-item" data-page="library-page"><i class="fas fa-book"></i>My Library</a>
+            <a href="#" class="nav-item " data-page="wanttoread-page"><i class="fas fa-bookmark"></i>Want to Read</a>
+            <a href="#" class="nav-item " data-page="currently-page"><i class="fas fa-book-open"></i>Currently
+                Reading</a>
+            <a href="#" class="nav-item " data-page="completed-page"><i class="fas fa-check-circle"></i>Completed</a>
+        </div>
+        <div class="options2">
+            <a href="#"><i class="fas fa-chart-bar"></i>Statistics</a>
+            <a href="#"><i class="fas fa-plus"></i>Add Book</a>
+            <a href="#"><i class="fas fa-cog"></i>Settings</a>
+        </div>
+
+    </div>
+    <div class="main-content">
+        <section id="dashboard-page" class="page-view">
+            <h1>Dashboard</h1>
+            <p>Welcome back! Here is your recent activity.</p>
+        </section>
+        <section id="library-page" class="page-view">
+            <h1>My library</h1>
+            <p>All cataloged books in your personal collection.</p>
+        </section>
+        <section id="add-book-page" class="page-view">
+            <h1>Add a New Book</h1>
+            <form id="addBookForm"> 
+                <label>Title:</label>         
+                <input type="text" placeholder="Enter the book name"></input>
+                <label>Author:</label>     
+                <input type="text" placeholder="Enter the book author"></input>
+                <label>Genre:</label>         
+                <select type="text" placeholder="Enter the book genre">\
+                    <option>Fiction</option>
+                    <option>Non-Fiction</option>
+                    <option>Horror</option>
+                    <option>Fantasy</option>
+                    <option>SCi-Fi</option>
+                    <option>Classic</option>
+                    <option>Biography</option>
+                </select>
+                <label>Total Pages:</label>     
+                <input type="number" placeholder="Enter total pages of book " min="1" required></input>
+                <label>Book Status:</label>     
+                <select type="text" placeholder="Enter the book status">
+                    <option>Want to Read</option>
+                    <option>Currently Reading</option>
+                    <option>Completed</option>
+                </select>
+            </form>
+        </section>
+        <section id="stats-page" class="page-view">
+            <h1>Reading Statistics</h1>
+            <p>Insights on pages read, genres, and completed books.</p>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
