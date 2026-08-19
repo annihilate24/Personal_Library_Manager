@@ -4,7 +4,7 @@
 <head>
     <title>Personal Library Manager</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-content=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
@@ -13,20 +13,19 @@
     <button class="toggle-btn" id="toggleBtn">☰</button>
     <div class="sidebar" id="sidebar">
         <div class="logo">
-
             <h2 class="logo-text">Personal Library Manager</h2>
         </div>
         <div class="options1">
-            <a href="#" class="nav-item active" data-page="dashboard-page"><i class="fas fa-th-large"></i>Dashboard</a>
-            <a href="#" class="nav-item" data-page="library-page"><i class="fas fa-book"></i>My Library</a>
-            <a href="#" class="nav-item " data-page="wanttoread-page"><i class="fas fa-bookmark"></i>Want to Read</a>
-            <a href="#" class="nav-item " data-page="currently-page"><i class="fas fa-book-open"></i>Currently
+            <a href="#dashboard-page" class="nav-item active" ><i class="fas fa-th-large"></i>Dashboard</a>
+            <a href="#library-page" class="nav-item" ><i class="fas fa-book"></i>My Library</a>
+            <a href="#wanttoread-page" class="nav-item " ><i class="fas fa-bookmark"></i>Want to Read</a>
+            <a href="#currently-page" class="nav-item " ><i class="fas fa-book-open"></i>Currently
                 Reading</a>
-            <a href="#" class="nav-item " data-page="completed-page"><i class="fas fa-check-circle"></i>Completed</a>
+            <a href="#completed-page" class="nav-item " ><i class="fas fa-check-circle"></i>Completed</a>
         </div>
         <div class="options2">
             <a href="#"><i class="fas fa-chart-bar"></i>Statistics</a>
-            <a href="#"><i class="fas fa-plus"></i>Add Book</a>
+            <a href="#add-book-page" class="nav-item"><i class="fas fa-plus"></i>Add Book</a>
             <a href="#"><i class="fas fa-cog"></i>Settings</a>
         </div>
 
@@ -39,16 +38,19 @@
         <section id="library-page" class="page-view">
             <h1>My library</h1>
             <p>All cataloged books in your personal collection.</p>
+            <div id="showBooks">
+                
+            </div>
         </section>
         <section id="add-book-page" class="page-view">
             <h1>Add a New Book</h1>
             <form id="addBookForm"> 
                 <label>Title:</label>         
-                <input type="text" placeholder="Enter the book name"></input>
+                <input id="bookname" type="text" placeholder="Enter the book name"></input>
                 <label>Author:</label>     
-                <input type="text" placeholder="Enter the book author"></input>
+                <input id="author" type="text" placeholder="Enter the book author"></input>
                 <label>Genre:</label>         
-                <select type="text" placeholder="Enter the book genre">\
+                <select id="genre" type="text" placeholder="Enter the book genre">\
                     <option>Fiction</option>
                     <option>Non-Fiction</option>
                     <option>Horror</option>
@@ -58,13 +60,15 @@
                     <option>Biography</option>
                 </select>
                 <label>Total Pages:</label>     
-                <input type="number" placeholder="Enter total pages of book " min="1" required></input>
+                <input id="pages" type="number" placeholder="Enter total pages of book " min="1" required></input>
                 <label>Book Status:</label>     
-                <select type="text" placeholder="Enter the book status">
+                <select id="status" type="text" placeholder="Enter the book status">
                     <option>Want to Read</option>
                     <option>Currently Reading</option>
                     <option>Completed</option>
                 </select>
+                <button id="add-btn" type="submit">Add a new book</button>
+                <button id="update-btn" type="submit">Update an existing Book</button>
             </form>
         </section>
         <section id="stats-page" class="page-view">
