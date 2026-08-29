@@ -1,4 +1,3 @@
-
 body {
     background-color: #f8f5e9;
 }
@@ -40,32 +39,38 @@ body {
     border: none;
     font-size: 20px;
     padding: 10px 14px;
-    margin:29px 15px;
+    margin: 29px 15px;
     border-radius: 6px;
     cursor: pointer;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     flex-shrink: 0;
 }
-.logo{
+
+.logo {
     display: flex;
     align-items: center;
-    gap:12px;
-    padding:10px 20px;
+    gap: 12px;
+    padding: 10px 20px;
 }
 
-.logo-text {
+.logo-text1{
     color: #263d2b;
     margin-left: 60px;
     font-size: 25px;
 }
 
+.logo-text2{
+    color: #263d2b;
+    font-size: 25px;
+    margin-left: 10px;
+}
 .sidebar a:hover {
     background-color: rgba(255, 255, 255, 0.35);
     color: #FDFBF7;
     padding-left: 28px;
 }
 
-.main-content{
+.main-content {
     margin-left: 260px;
     min-height: 100vh;
     padding: 5px 50px;
@@ -73,53 +78,172 @@ body {
     color: #2a1f0d;
 }
 
-.sidebar.closed ~ .main-content{
-    margin-left: 20px;
+.sidebar.closed~.main-content {
+    margin-left: 50px;
+
 }
 
-form{
+form {
     display: flex;
     flex-direction: column;
     width: 300px;
     min-height: fit-content;
-    gap:10px;
-    padding:15px;
+    gap: 10px;
+    padding: 15px;
     border-radius: 10px;
     background-color: #6ba286;
-    
+
 }
 
-#addBookForm{
+#addBookForm {
     display: flex;
-    
+    width: 350px;
 }
-form input,select{
-    padding:10px;
+
+form input,
+select {
+    padding: 10px;
 
 }
-form label{
+
+form label {
     font-size: 18px;
 }
-#showBooks{
+
+#showBooks,
+#wanttoreadbooks,
+#currentlyreadingbooks,
+#completedbooks {
     display: flex;
     flex-direction: row;
-    gap:15px;
+    gap: 35px;
     flex-wrap: wrap;
 }
-.book-card{
-    width: 200px;
-    height: 225px;
+
+#showBooks {
+    padding-bottom: 30px;
+}
+
+.book-card {
+    width: 240px;
+    height: 310px;
     font-size: 18px;
     background-color: #6ba286;
-    border-radius:10px;
+    border-radius: 10px;
 }
-.book-card p{
-    margin:15px;
+
+.book-card p {
+    margin: 13px;
     color: #2a1f0d;
 }
 
-.book-card h2{
+.book-card h3 {
     display: flex;
     justify-content: center;
     color: #2a1f0d;
+}
+
+p {
+    font-size: 20px;
+}
+
+#add-btn,
+#update-btn {
+    padding: 10px;
+}
+
+#dashboard-page,
+#library-page,
+#want-to-read-page,
+#currently-reading-page,
+#completed-page,
+#add-book-page,
+#stats-page {
+    padding-top: 5px;
+}
+
+.reading-card {
+    display: flex;
+    justify-content: space-between;
+}
+
+.count-card {
+    width: 275px;
+    height: 100px;
+    background-color: #6ba286;
+    border-radius: 10px;
+}
+
+.count-card p,
+.count-card h2 {
+    margin: 15px;
+    color: #2a1f0d;
+}
+
+.progress-bar {
+    height: 12px;
+    width: 80%;
+    background-color: #d9e4d5;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 15px auto;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0;
+    background-color: #2D4F3E;
+    border-radius: 10px;
+    transition: width 0.5s ease;
+}
+
+.searchBar{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap:150px;
+    background-color: #b2d9c5;
+    height: 60px;
+    width:100%;
+    border-radius: 10px;
+}
+
+#searchBook{
+    padding: 10px;
+    width:max(350px,80%);
+    margin-right: 10px;
+}
+
+.search-container{
+    display: flex;
+    position: relative;
+    align-items: center;
+    gap:15px;
+}
+
+#searchResults{
+    position: absolute;
+    top:60px;
+    right: 0;
+    width: 390px;
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+    z-index:2000;
+}
+
+.search-result{
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+
+}
+
+.search-result strong{
+    display: block;
+    margin-bottom: 5px;
+}
+
+.search-result small{
+    display: block;
 }

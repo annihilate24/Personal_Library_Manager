@@ -13,70 +13,113 @@
     <button class="toggle-btn" id="toggleBtn">☰</button>
     <div class="sidebar" id="sidebar">
         <div class="logo">
-            <h2 class="logo-text">Personal Library Manager</h2>
+            <h2 class="logo-text1">Personal Library Manager</h2>
         </div>
         <div class="options1">
-            <a href="#dashboard-page" class="nav-item active" ><i class="fas fa-th-large"></i>Dashboard</a>
-            <a href="#library-page" class="nav-item" ><i class="fas fa-book"></i>My Library</a>
-            <a href="#wanttoread-page" class="nav-item " ><i class="fas fa-bookmark"></i>Want to Read</a>
-            <a href="#currently-page" class="nav-item " ><i class="fas fa-book-open"></i>Currently
+            <a href="#dashboard-page" class="nav-item active"><i class="fas fa-th-large"></i>Dashboard</a>
+            <a href="#add-book-page" class="nav-item"><i class="fas fa-plus"></i>Add Book</a>
+            <a href="#library-page" class="nav-item"><i class="fas fa-book"></i>My Library</a>
+            <a href="#want-to-read-page" class="nav-item "><i class="fas fa-bookmark"></i>Want to Read</a>
+            <a href="#currently-reading-page" class="nav-item "><i class="fas fa-book-open"></i>Currently
                 Reading</a>
-            <a href="#completed-page" class="nav-item " ><i class="fas fa-check-circle"></i>Completed</a>
+            <a href="#completed-page" class="nav-item "><i class="fas fa-check-circle"></i>Completed</a>
         </div>
         <div class="options2">
-            <a href="#"><i class="fas fa-chart-bar"></i>Statistics</a>
-            <a href="#add-book-page" class="nav-item"><i class="fas fa-plus"></i>Add Book</a>
+            <a href="#dashboard-page"><i class="fas fa-chart-bar"></i>Statistics</a>
             <a href="#"><i class="fas fa-cog"></i>Settings</a>
         </div>
 
     </div>
     <div class="main-content">
-        <section id="dashboard-page" class="page-view">
-            <h1>Dashboard</h1>
-            <p>Welcome back! Here is your recent activity.</p>
-        </section>
-        <section id="library-page" class="page-view">
-            <h1>My library</h1>
-            <p>All cataloged books in your personal collection.</p>
-            <div id="showBooks">
-                
+        <div class="searchBar">
+            <h2 class="logo-text2">Personal Library Manager</h2>
+            <div class="search-container">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchBook" placeholder="Search by Book name, author or genre">
+                <div id="searchResults"></div>
             </div>
-        </section>
-        <section id="add-book-page" class="page-view">
-            <h1>Add a New Book</h1>
-            <form id="addBookForm"> 
-                <label>Title:</label>         
-                <input id="bookname" type="text" placeholder="Enter the book name"></input>
-                <label>Author:</label>     
-                <input id="author" type="text" placeholder="Enter the book author"></input>
-                <label>Genre:</label>         
-                <select id="genre" type="text" placeholder="Enter the book genre">\
-                    <option>Fiction</option>
-                    <option>Non-Fiction</option>
-                    <option>Horror</option>
-                    <option>Fantasy</option>
-                    <option>SCi-Fi</option>
-                    <option>Classic</option>
-                    <option>Biography</option>
-                </select>
-                <label>Total Pages:</label>     
-                <input id="pages" type="number" placeholder="Enter total pages of book " min="1" required></input>
-                <label>Book Status:</label>     
-                <select id="status" type="text" placeholder="Enter the book status">
-                    <option>Want to Read</option>
-                    <option>Currently Reading</option>
-                    <option>Completed</option>
-                </select>
-                <button id="add-btn" type="submit">Add a new book</button>
-                <button id="update-btn" type="submit">Update an existing Book</button>
-            </form>
-        </section>
-        <section id="stats-page" class="page-view">
-            <h1>Reading Statistics</h1>
-            <p>Insights on pages read, genres, and completed books.</p>
-        </section>
-    </div>
-    <script src="script.js"></script>
+            
+        </div>
+            <section id="dashboard-page" class="page-view">
+                <h1>Dashboard</h1>
+                <p>Welcome back! Here is your recent activity.</p>
+                <div class="reading-card">
+                    <div class="count-card">
+                        <h2>Want to Read</h2>
+                        <p id="wanttoreadcount"></p>
+                    </div>
+                    <div class="count-card">
+                        <h2>Currently Reading</h2>
+                        <p id="currentlyreadingcount"></p>
+                    </div>
+                    <div class="count-card">
+                        <h2>Completed</h2>
+                        <p id="completedcount"></p>
+                    </div>
+                </div>
+            </section>
+            <section id="add-book-page" class="page-view">
+                <h1>Add a New Book</h1>
+                <form id="addBookForm">
+                    <label>Title:</label>
+                    <input id="bookname" type="text" placeholder="Enter the book name"></input>
+                    <label>Author:</label>
+                    <input id="author" type="text" placeholder="Enter the book author"></input>
+                    <label>Genre:</label>
+                    <select id="genre" type="text" placeholder="Enter the book genre">\
+                        <option>Fiction</option>
+                        <option>Non-Fiction</option>
+                        <option>Horror</option>
+                        <option>Fantasy</option>
+                        <option>SCi-Fi</option>
+                        <option>Classic</option>
+                        <option>Biography</option>
+                    </select>
+                    <label>Total Pages:</label>
+                    <input id="pages" type="number" placeholder="Enter total pages of book " min="1" required></input>
+                    <label>Pages Read:</label>
+                    <input id="pagesRead" type="number" placeholder="Enter pages read " min="0" required></input>
+                    <label>Book Status:</label>
+                    <select id="status" type="text" placeholder="Enter the book status">
+                        <option>Want to Read</option>
+                        <option>Currently Reading</option>
+                        <option>Completed</option>
+                    </select>
+                    <button id="add-btn" type="submit">Add a new book</button>
+
+                </form>
+            </section>
+
+            <section id="library-page" class="page-view">
+                <h1>My library</h1>
+                <p>All cataloged books in your personal collection.</p>
+                <div id="showBooks">
+
+                </div>
+            </section>
+
+            <section id="want-to-read-page" class="page-view">
+                <h1>Want to Read</h1>
+                <div id="wanttoreadbooks"></div>
+            </section>
+
+            <section id="currently-reading-page" class="page-view">
+                <h1>Currently Reading</h1>
+                <div id="currentlyreadingbooks"></div>
+            </section>
+
+            <section id="completed-page" class="page-view">
+                <h1>Completed</h1>
+                <div id="completedbooks"></div>
+            </section>
+
+
+            <section id="stats-page" class="page-view">
+                <h1>Reading Statistics</h1>
+                <p>Insights on pages read, genres, and completed books.</p>
+            </section>
+        </div>
+        <script src="script.js"></script>
 </body>
 
 </html>
