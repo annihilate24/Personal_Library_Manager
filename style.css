@@ -19,7 +19,8 @@ body {
 .sidebar {
     width: 300px;
     height: 100vh;
-    background-color: #6ba286;
+    background-color: #82bc9e;
+    /*#6ba286*/
     position: fixed;
     top: 0;
     left: 0;
@@ -53,17 +54,18 @@ body {
     padding: 10px 20px;
 }
 
-.logo-text1{
+.logo-text1 {
     color: #263d2b;
     margin-left: 60px;
     font-size: 25px;
 }
 
-.logo-text2{
+.logo-text2 {
     color: #263d2b;
     font-size: 25px;
     margin-left: 10px;
 }
+
 .sidebar a:hover {
     background-color: rgba(255, 255, 255, 0.35);
     color: #FDFBF7;
@@ -75,7 +77,7 @@ body {
     min-height: 100vh;
     padding: 5px 50px;
     transition: margin-left 0.3s ease-in-out;
-    color: #2a1f0d;
+    color: #263d2b;
 }
 
 .sidebar.closed~.main-content {
@@ -91,7 +93,7 @@ form {
     gap: 10px;
     padding: 15px;
     border-radius: 10px;
-    background-color: #6ba286;
+    background-color:#82bc9e;
 
 }
 
@@ -128,19 +130,19 @@ form label {
     width: 240px;
     height: 310px;
     font-size: 18px;
-    background-color: #6ba286;
+    background-color: #b2d9c5;
     border-radius: 10px;
 }
 
 .book-card p {
     margin: 13px;
-    color: #2a1f0d;
+    color: #263d2b;
 }
 
 .book-card h3 {
     display: flex;
     justify-content: center;
-    color: #2a1f0d;
+    color: #263d2b;
 }
 
 p {
@@ -168,16 +170,16 @@ p {
 }
 
 .count-card {
-    width: 275px;
-    height: 100px;
-    background-color: #6ba286;
+    width: 150px;
+    height: 95px;
+    background-color: #b2d9c5;
     border-radius: 10px;
 }
 
 .count-card p,
-.count-card h2 {
-    margin: 15px;
-    color: #2a1f0d;
+.count-card h3 {
+    margin: 10px;
+    color: #263d2b;
 }
 
 .progress-bar {
@@ -197,53 +199,64 @@ p {
     transition: width 0.5s ease;
 }
 
-.searchBar{
+.searchBar {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap:150px;
+    gap: 150px;
     background-color: #b2d9c5;
     height: 60px;
-    width:100%;
+    width: 100%;
     border-radius: 10px;
 }
 
-#searchBook{
+#searchBook {
     padding: 10px;
-    width:max(350px,80%);
+    width: max(350px, 80%);
     margin-right: 10px;
 }
 
-.search-container{
+.search-container {
     display: flex;
     position: relative;
     align-items: center;
-    gap:15px;
+    gap: 15px;
 }
 
-#searchResults{
+#searchResults {
     position: absolute;
-    top:60px;
+    top: 60px;
     right: 0;
     width: 390px;
     display: flex;
     flex-direction: column;
-    gap:5px;
-    z-index:2000;
+    gap: 5px;
+    z-index: 2000;
 }
 
-.search-result{
+.search-result {
     background-color: white;
     padding: 10px;
     border-radius: 10px;
 
 }
 
-.search-result strong{
+.search-result strong {
     display: block;
     margin-bottom: 5px;
 }
 
-.search-result small{
+.search-result small {
     display: block;
 }
+
+.search-book-name {
+    display: block;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+.search-book-name:hover {
+    text-decoration: underline;
+}
+

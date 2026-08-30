@@ -191,6 +191,8 @@ function CompletedBooks() {
 const wanttoreadcount = document.getElementById("wanttoreadcount");
 const currentlyreadingcount = document.getElementById("currentlyreadingcount");
 const completedcount = document.getElementById("completedcount");
+const pagesread = document.getElementById("pagesread");
+const favouriteGenre = document.getElementById("favGenre");
 
 function displayReadingCount() {
     const wanttoread = books.filter(function (book) {
@@ -203,10 +205,32 @@ function displayReadingCount() {
         return book.status === "Completed";
     });
 
+    let totpagesread = 0;
+    books.forEach(function (book) {
+        totpagesread += Number(book.pagesRead)
+    });
+
+    const genreCount = {};
+    books.forEach(function (book) {
+        if (genreCount[book.genre]) {
+            genreCount[book.genre]++;
+        } else {
+            genreCount[book.genre] = 1;
+        }
+    });
+    let favGenre = "None";
+    let highestCount = 0;
+    for (let genre in genreCount) {
+        if (genreCount[genre] > highestCount) {
+            highestCount = genreCount[genre];
+            favGenre = genre;
+        }
+    }
     wanttoreadcount.textContent = wanttoread.length;
     currentlyreadingcount.textContent = currently.length;
     completedcount.textContent = completed.length;
-
+    pagesread.textContent = totpagesread;
+    favouriteGenre.textContent = favGenre;
 }
 
 //to update the pages of books
@@ -274,21 +298,49 @@ function searchBooks() {
             book.genre.toLowerCase().includes(searchText);
     });
 
-    filteredBooks.forEach(function(book){
+    filteredBooks.forEach(function (book) {
         const result = document.createElement("div");
         result.classList.add("search-result");
 
-        result.innerHTML=`
-        <strong>${book.bookname}</strong>
+        result.innerHTML = `
+        <strong class="search-book-name">${book.bookname}</strong>
         <small>Author: ${book.author} | Genre: ${book.genre}</small>`;
+
+        result.querySelector(".search-book-name").addEventListener("click", function () {
+            goToBook(book);
+        });
+
         searchResults.appendChild(result);
     });
-    if(filteredBooks.length === 0){
+    if (filteredBooks.length === 0) {
         searchResults.innerHTML = "<div class='search-result'>No book found</div>";
     }
-    
 }
-searchBooks();
+
+//to be able to show the searched book in library
+
+function goToBook(book) {
+    document.getElementById("library-page").scrollIntoView({
+        behavior: "smooth"
+    });
+
+    const bookCards = document.querySelectorAll(".book-card");
+    bookCards.forEach(function (card) {
+        if (card.querySelector("h3").textContent === book.bookname) {
+            card.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+            card.style.outline = "3px solid #2D4F3E";
+
+            setTimeout(function () {
+                card.style.outline = "";
+            }, 2000);
+        }
+    });
+    searchResults.innerHTML = "";
+    searchBook.value = "";
+}
 displayBooks();
 WanttoReadBooks();
 CurrentlyReadingBooks();
