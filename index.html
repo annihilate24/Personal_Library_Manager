@@ -38,96 +38,100 @@
                 <input type="text" id="searchBook" placeholder="Search by Book name, author or genre">
                 <div id="searchResults"></div>
             </div>
-            
         </div>
-            <section id="dashboard-page" class="page-view">
-                <h1>Dashboard</h1>
-                <p>Welcome back! Here is your recent activity.</p>
-                <div class="reading-card">
-                    <div class="count-card">
-                        <h3>Want to Read</h3>
-                        <p id="wanttoreadcount"></p>
-                    </div>
-                    <div class="count-card">
-                        <h3>Currently Reading</h3>
-                        <p id="currentlyreadingcount"></p>
-                    </div>
-                    <div class="count-card">
-                        <h3>Completed</h3>
-                        <p id="completedcount"></p>
-                    </div>
-                    <div class="count-card">
-                        <h3>Pages Read</h3>
-                        <p id="pagesread"></p>
-                    </div>
-                    <div class="count-card">
-                        <h3>Favourite genre</h3>
-                        <p id="favGenre"></p>
-                    </div>
+        <section id="dashboard-page" class="page-view">
+            <h1>Dashboard</h1>
+            <p>Welcome back! Here is your recent activity.</p>
+            <div class="reading-card">
+                <div class="count-card">
+                    <h3>Want to Read</h3>
+                    <p id="wanttoreadcount"></p>
                 </div>
-            </section>
-            <section id="add-book-page" class="page-view">
-                <h1>Add a New Book</h1>
-                <form id="addBookForm">
-                    <label>Title:</label>
-                    <input id="bookname" type="text" placeholder="Enter the book name"></input>
-                    <label>Author:</label>
-                    <input id="author" type="text" placeholder="Enter the book author"></input>
-                    <label>Genre:</label>
-                    <select id="genre" type="text" placeholder="Enter the book genre">\
-                        <option>Fiction</option>
-                        <option>Non-Fiction</option>
-                        <option>Horror</option>
-                        <option>Fantasy</option>
-                        <option>SCi-Fi</option>
-                        <option>Classic</option>
-                        <option>Biography</option>
-                    </select>
-                    <label>Total Pages:</label>
-                    <input id="pages" type="number" placeholder="Enter total pages of book " min="1" required></input>
-                    <label>Pages Read:</label>
-                    <input id="pagesRead" type="number" placeholder="Enter pages read " min="0" required></input>
-                    <label>Book Status:</label>
-                    <select id="status" type="text" placeholder="Enter the book status">
-                        <option>Want to Read</option>
-                        <option>Currently Reading</option>
-                        <option>Completed</option>
-                    </select>
-                    <button id="add-btn" type="submit">Add a new book</button>
-
-                </form>
-            </section>
-
-            <section id="library-page" class="page-view">
-                <h1>My library</h1>
-                <p>All cataloged books in your personal collection.</p>
-                <div id="showBooks">
-
+                <div class="count-card">
+                    <h3>Currently Reading</h3>
+                    <p id="currentlyreadingcount"></p>
                 </div>
-            </section>
+                <div class="count-card">
+                    <h3>Completed</h3>
+                    <p id="completedcount"></p>
+                </div>
+                <div class="count-card">
+                    <h3>Pages Read</h3>
+                    <p id="pagesread"></p>
+                </div>
+                <div class="count-card">
+                    <h3>Favourite genre</h3>
+                    <p id="favGenre"></p>
+                </div>
+            </div>
+        </section>
+        <section id="add-book-page" class="page-view">
+            <h1>Add a New Book</h1>
+            <form id="addBookForm">
+                <label>Title:</label>
+                <input id="bookname" type="text" placeholder="Enter the book name"></input>
+                <label>Author:</label>
+                <input id="author" type="text" placeholder="Enter the book author"></input>
+                <label>Genre:</label>
+                <select id="genre" type="text" placeholder="Enter the book genre">\
+                    <option>Fiction</option>
+                    <option>Non-Fiction</option>
+                    <option>Horror</option>
+                    <option>Fantasy</option>
+                    <option>SCi-Fi</option>
+                    <option>Classic</option>
+                    <option>Biography</option>
+                </select>
+                <label>Total Pages:</label>
+                <input id="pages" type="number" placeholder="Enter total pages of book " min="1" required></input>
+                <label>Pages Read:</label>
+                <input id="pagesRead" type="number" placeholder="Enter pages read " min="0" required></input>
+                <label>Book Status:</label>
+                <select id="status" type="text" placeholder="Enter the book status">
+                    <option>Want to Read</option>
+                    <option>Currently Reading</option>
+                    <option>Completed</option>
+                </select>
+                <button id="add-btn" type="submit">Add a new book</button>
 
-            <section id="want-to-read-page" class="page-view">
-                <h1>Want to Read</h1>
-                <div id="wanttoreadbooks"></div>
-            </section>
+            </form>
+        </section>
 
-            <section id="currently-reading-page" class="page-view">
-                <h1>Currently Reading</h1>
-                <div id="currentlyreadingbooks"></div>
-            </section>
+        <section id="library-page" class="page-view">
+            <h1>My library</h1>
+            <p>All cataloged books in your personal collection.</p>
+            <div id="showBooks">
 
-            <section id="completed-page" class="page-view">
-                <h1>Completed</h1>
-                <div id="completedbooks"></div>
-            </section>
+            </div>
+        </section>
+
+        <section id="want-to-read-page" class="page-view">
+            <h1>Want to Read</h1>
+            <div id="wanttoreadbooks"></div>
+        </section>
+
+        <section id="currently-reading-page" class="page-view">
+            <h1>Currently Reading</h1>
+            <div id="currentlyreadingbooks"></div>
+        </section>
+
+        <section id="completed-page" class="page-view">
+            <h1>Completed</h1>
+            <div id="completedbooks"></div>
+        </section>
 
 
-            <section id="stats-page" class="page-view">
-                <h1>Reading Statistics</h1>
-                <p>Insights on pages read, genres, and completed books.</p>
-            </section>
-        </div>
-        <script src="script.js"></script>
+        <section id="stats-page" class="page-view">
+            <h1>Reading Statistics</h1>
+            <p>Insights on pages read, genres, and completed books.</p>
+            <div class="chart-container">
+                <h3>Books Read by Genre</h3>
+                <div id="genreChart"></div>
+            </div>
+        </section>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>

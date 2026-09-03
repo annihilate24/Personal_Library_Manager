@@ -1,4 +1,6 @@
 body {
+    margin: 0;
+    padding: 0;
     background-color: #f8f5e9;
 }
 
@@ -18,11 +20,10 @@ body {
 
 .sidebar {
     width: 300px;
-    height: 100vh;
     background-color: #82bc9e;
-    /*#6ba286*/
     position: fixed;
     top: 0;
+    bottom: 0;
     left: 0;
     transition: transform 0.3s ease-in-out;
     z-index: 1000;
@@ -93,7 +94,7 @@ form {
     gap: 10px;
     padding: 15px;
     border-radius: 10px;
-    background-color:#82bc9e;
+    background-color: #82bc9e;
 
 }
 
@@ -212,9 +213,10 @@ p {
 
 #searchBook {
     padding: 10px;
-    width: max(350px, 80%);
+    width: min(350px, 80%);
     margin-right: 10px;
 }
+
 
 .search-container {
     display: flex;
@@ -260,3 +262,148 @@ p {
     text-decoration: underline;
 }
 
+/*.chart-container{
+    width:100%;
+    max-width: 800px;
+    margin: 25px 0;
+    background-color: #b2d9c5;
+    border-radius: 10px;
+}
+
+.chart-container h3{
+    color: #263d2b;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.chart-container{
+    width:100%;
+    max-height: 400px;
+}*/
+
+#genreChart,#pagesChar{
+    padding: 20px;
+}
+
+.bar-container{
+    display: flex;
+    align-items: center;
+    gap:15px;
+    margin: 15px 0;
+}
+
+.bar-container span{
+    width: 150px;
+}
+
+.bar{
+    width: 300px;
+    height: 25px;
+    background-color: #d9e4d5;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.bar-fill{
+    height: 100%;
+    background-color: #2D4F3E;
+    color: #FDFBF7;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    min-width: 20px;
+}
+
+@media screen and (max-width:768px) {
+    .sidebar {
+        width: 250px;
+        max-width: 80%;
+    }
+
+    .main-content {
+        margin-left: 0px;
+        padding: 5px 10px;
+        width: auto;
+    }
+    .sidebar.closed~.main-content {
+        margin-left: 0;
+    }
+    
+    .sidebar.closed{
+        transform: translate(-100%);
+    }
+    #addBookForm{
+        width:100%;
+        box-sizing: border-box;
+    }
+    form input,
+    form select{
+        width:100%;
+        box-sizing: border-box;
+    }
+    .reading-card{
+        flex-direction: column;
+        gap:15px;
+    }
+    .count-card{
+        width:100%;
+        box-sizing: border-box;
+    }
+    #showBooks,
+    #wanttoreadbooks,
+    #currentlyreadingbooks,
+    #completedbooks {
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .book-card {
+        width: 100%;
+        max-width: 320px;
+        box-sizing: border-box;
+    }
+    .searchBar{
+        gap:10px;
+        height:auto;
+        min-height: 60px;
+        padding: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+        box-sizing: border-box;
+    }
+    .logo-text2{
+        font-size: 20px;
+        margin:0;
+        text-align: center;
+        width: 100%;
+    }
+    #searchBook{
+        margin: 0px;
+        width:100%;
+        box-sizing: border-box;
+    }
+    .search-container{
+        width:100%;
+        gap:8px;
+    }
+    #searchResults{
+        width:100%;
+        right:0;
+        left:0;
+        top:55px;
+        box-sizing: border-box;
+    }
+    .search-results{
+        width: 100%;
+        box-sizing: border-box;
+    }
+    h1{
+        font-size: 28px;
+    }
+    p{
+        font-size: 17px;
+    }
+    .toggle-btn{
+        margin:15px 10px;
+    }
+}

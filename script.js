@@ -61,6 +61,7 @@ function addBooks(event) {
     CurrentlyReadingBooks();
     CompletedBooks();
     displayReadingCount();
+    displayGenreChart();
     addBookForm.reset();
 
 }
@@ -341,8 +342,38 @@ function goToBook(book) {
     searchResults.innerHTML = "";
     searchBook.value = "";
 }
+
+//to display the chart
+
+function displayGenreChart(){
+    const genreChart = document.getElementById("genreChart");
+    genreChart.innerHTML="";
+
+    const genreCount = {};
+    books.forEach(function (book) {
+        if (genreCount[book.genre]) {
+            genreCount[book.genre]++;
+        } else {
+            genreCount[book.genre] = 1;
+        }
+    });
+    for(let genre in genreCount){
+        const barContainer = document.createElement("div");
+        barContainer.classList.add("bar-container");
+
+        barContainer.innerHTML=`
+        <span>${genre}</span>
+        <div class="bar">
+            <div class="bar-fill" style="width: ${genreCount[genre]*50}px"></div>
+        </div>`;
+        genreChart.appendChild(barContainer);
+    }
+}
+
 displayBooks();
 WanttoReadBooks();
 CurrentlyReadingBooks();
 CompletedBooks();
 displayReadingCount();
+
+displayGenreChart();
