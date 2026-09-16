@@ -77,7 +77,7 @@ function displayBooks() {
     showBooks.innerHTML = "";
     books.forEach(function (book, index) {
         const bookCard = document.createElement("div");
-        bookCard.classList.add("book-card");
+        bookCard.classList.add("book-card","library-book");
 
         const progress = (Number(book.pagesRead) / Number(book.pages)) * 100;
 
@@ -158,7 +158,6 @@ function CurrentlyReadingBooks() {
         currentlyreadingbooks.appendChild(bookCard);
     });
 }
-
 
 function CompletedBooks() {
     completedbooks.innerHTML = "";
@@ -255,6 +254,15 @@ function updateBook(index) {
     book.pages = Number(newPages);
     book.pagesRead = Number(newPagesRead);
 
+    if (book.pagesRead >= book.pages) {
+        book.pagesRead = book.pages;
+        book.status = "Completed";
+    } else if (book.pagesRead > 0) {
+        book.status = "Currently Reading";
+    } else {
+        book.status = "Want to Read";
+    }
+
     checkCompleted(book);
     saveBooks();
     displayBooks();
@@ -275,6 +283,7 @@ function deleteBook(index) {
         CurrentlyReadingBooks();
         CompletedBooks();
         displayReadingCount();
+        displayGenreChart();
     }
 }
 
@@ -284,11 +293,11 @@ const searchBook = document.getElementById("searchBook");
 const searchResults = document.getElementById("searchResults");
 
 let searchTimer;
-searchBook.addEventListener("input", function(){
+searchBook.addEventListener("input", function () {
     clearTimeout(searchTimer);
-    searchTimer=setTimeout(function(){
+    searchTimer = setTimeout(function () {
         searchBooks();
-    },5000);
+    }, 3000);
 });
 
 function searchBooks() {
@@ -331,7 +340,7 @@ function goToBook(book) {
         behavior: "smooth"
     });
 
-    const bookCards = document.querySelectorAll(".book-card");
+    const bookCards = document.querySelectorAll(".library-book");
     bookCards.forEach(function (card) {
         if (card.querySelector("h3").textContent === book.bookname) {
             card.scrollIntoView({
