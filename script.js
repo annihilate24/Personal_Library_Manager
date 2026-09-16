@@ -11,7 +11,7 @@ function loadSidebar() {
 //to check whether the book has been completed reading
 
 function checkCompleted(book) {
-    if (Number(book.pagesRead) >= Number(book.pages)) {
+    if (Number(book.pagesRead) == Number(book.pages)) {
         book.pagesRead = Number(book.pages);
         book.status = "Completed";
     }
@@ -82,7 +82,7 @@ function displayBooks() {
         const progress = (Number(book.pagesRead) / Number(book.pages)) * 100;
 
         bookCard.innerHTML = ` 
-            <h3>${book.bookname}</h3>
+            <h3 style="font-size: ${book.bookname.length > 25 ? "16px" : "22px"}">${book.bookname}</h3>
             <p><strong>Author: </strong>${book.author}</p>
             <p><strong>Genre: </strong>${book.genre}</p>
             <p><strong>Pages: </strong>${book.pages}</p>
@@ -117,7 +117,7 @@ function WanttoReadBooks() {
         const progress = (Number(book.pagesRead) / Number(book.pages)) * 100;
 
         bookCard.innerHTML = ` 
-            <h3>${book.bookname}</h3>
+            <h3 style="font-size: ${book.bookname.length > 25 ? "16px" : "22px"}">${book.bookname}</h3>
             <p><strong>Author: </strong>${book.author}</p>
             <p><strong>Genre: </strong>${book.genre}</p>
             <p><strong>Pages: </strong>${book.pages}</p>
@@ -145,7 +145,7 @@ function CurrentlyReadingBooks() {
         const progress = (Number(book.pagesRead) / Number(book.pages)) * 100;
 
         bookCard.innerHTML = ` 
-            <h3>${book.bookname}</h3>
+            <h3 style="font-size: ${book.bookname.length > 25 ? "16px" : "22px"}">${book.bookname}</h3>
             <p><strong>Author: </strong>${book.author}</p>
             <p><strong>Genre: </strong>${book.genre}</p>
             <p><strong>Pages: </strong>${book.pages}</p>
@@ -173,7 +173,7 @@ function CompletedBooks() {
         const progress = (Number(book.pagesRead) / Number(book.pages)) * 100;
 
         bookCard.innerHTML = ` 
-            <h3>${book.bookname}</h3>
+            <h3 style="font-size: ${book.bookname.length > 25 ? "16px" : "22px"}">${book.bookname}</h3>
             <p><strong>Author: </strong>${book.author}</p>
             <p><strong>Genre: </strong>${book.genre}</p>
             <p><strong>Pages: </strong>${book.pages}</p>
@@ -283,7 +283,13 @@ function deleteBook(index) {
 const searchBook = document.getElementById("searchBook");
 const searchResults = document.getElementById("searchResults");
 
-searchBook.addEventListener("input", searchBooks);
+let searchTimer;
+searchBook.addEventListener("input", function(){
+    clearTimeout(searchTimer);
+    searchTimer=setTimeout(function(){
+        searchBooks();
+    },5000);
+});
 
 function searchBooks() {
     const searchText = searchBook.value.toLowerCase().trim();
@@ -345,9 +351,9 @@ function goToBook(book) {
 
 //to display the chart
 
-function displayGenreChart(){
+function displayGenreChart() {
     const genreChart = document.getElementById("genreChart");
-    genreChart.innerHTML="";
+    genreChart.innerHTML = "";
 
     const genreCount = {};
     books.forEach(function (book) {
@@ -357,17 +363,91 @@ function displayGenreChart(){
             genreCount[book.genre] = 1;
         }
     });
-    for(let genre in genreCount){
+    for (let genre in genreCount) {
         const barContainer = document.createElement("div");
         barContainer.classList.add("bar-container");
 
-        barContainer.innerHTML=`
+        barContainer.innerHTML = `
         <span>${genre}</span>
         <div class="bar">
-            <div class="bar-fill" style="width: ${genreCount[genre]*50}px"></div>
+            <div class="bar-fill" style="width: ${genreCount[genre] * 50}px"></div>
         </div>`;
         genreChart.appendChild(barContainer);
     }
+}
+
+//to fetch the information of the bookname
+
+function getGenre(subjects) {
+    if (!subjects || subjects.length === 0) {
+        return "Others";
+    }
+
+    const text = subjects.join(" ").toLowerCase();
+    if (text.includes("fantasy")) {
+        return "Fantasy";
+    }
+    if (text.includes("mystery") || text.includes("detective")) {
+        return "Mystery";
+    }
+    if (text.includes("romance")) {
+        return "Romance";
+    }
+    if (text.includes("horror")) {
+        return "Horror";
+    }
+    if (text.includes("science fiction")) {
+        return "Science Fiction";
+    }
+    if (text.includes("history")) {
+        return "History";
+    }
+    if (text.includes("fiction")) {
+        return "Fiction";
+    }
+    return "Other";
+}
+const fetchBtn = document.getElementById("fetchBtn");
+fetchBtn.addEventListener("click", function () {
+    if (bookname.value.trim() === "") {
+        alert("Please enter a book name");
+        return;
+    }
+    fetch(`https://openlibrary.org/search.json?title=${encodeURIComponent(bookname.value)}&fields=title,author_name,subject,number_of_pages_median&limit=1`)
+        .then(function (response) {
+            return response.json();
+        }).then(function (data) {
+            console.log(data);
+            if (data.docs.length === 0) {
+                alert("Book not found!");
+                return;
+            }
+            const book = data.docs[0];
+            bookname.value = book.title || "";
+            author.value = book.author_name ? book.author_name[0] : "";
+            pages.value = book.number_of_pages_median || "";
+            genre.value = getGenre(book.subject);
+        })
+        .catch(function (error) {
+            console.log(error);
+            alert("Unable to fetch book details")
+        });
+});
+
+//to disable the pages read input 
+
+status.addEventListener("change", function () {
+    if (status.value === "Want to Read" || status.value === "Completed") {
+        pagesRead.value = 0;
+        pagesRead.disabled = true;
+    } else {
+        pagesRead.disabled = false;
+    }
+});
+
+if (status.value === "Want to Read" || status.value === "Completed") {
+    pagesRead.value = 0;
+    pagesRead.disabled = true;
 }
 
 displayBooks();

@@ -26,7 +26,7 @@
         </div>
         <div class="options2">
             <a href="#dashboard-page"><i class="fas fa-chart-bar"></i>Statistics</a>
-            <a href="#"><i class="fas fa-cog"></i>Settings</a>
+            <a href="login.html"><i class="fas fa-cog"></i>Settings</a>
         </div>
 
     </div>
@@ -69,19 +69,15 @@
             <h1>Add a New Book</h1>
             <form id="addBookForm">
                 <label>Title:</label>
-                <input id="bookname" type="text" placeholder="Enter the book name"></input>
+                <div class="book-search-container">
+                    <input id="bookname" type="text" placeholder="Enter the book name"></input>
+                    <button type="button" id="fetchBtn">Search</button>
+                </div>
+                
                 <label>Author:</label>
                 <input id="author" type="text" placeholder="Enter the book author"></input>
                 <label>Genre:</label>
-                <select id="genre" type="text" placeholder="Enter the book genre">\
-                    <option>Fiction</option>
-                    <option>Non-Fiction</option>
-                    <option>Horror</option>
-                    <option>Fantasy</option>
-                    <option>SCi-Fi</option>
-                    <option>Classic</option>
-                    <option>Biography</option>
-                </select>
+                <input id="genre" type="text" placeholder="Enter the genre"></input>
                 <label>Total Pages:</label>
                 <input id="pages" type="number" placeholder="Enter total pages of book " min="1" required></input>
                 <label>Pages Read:</label>
