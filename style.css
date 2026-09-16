@@ -143,6 +143,7 @@ form label {
 .book-card h3 {
     display: flex;
     justify-content: center;
+    margin-left: 10px;
     color: #263d2b;
 }
 
