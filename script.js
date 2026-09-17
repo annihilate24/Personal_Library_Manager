@@ -62,6 +62,7 @@ function addBooks(event) {
     CompletedBooks();
     displayReadingCount();
     displayGenreChart();
+    loadFilters();
     addBookForm.reset();
 
 }
@@ -77,7 +78,7 @@ function displayBooks() {
     showBooks.innerHTML = "";
     books.forEach(function (book, index) {
         const bookCard = document.createElement("div");
-        bookCard.classList.add("book-card","library-book");
+        bookCard.classList.add("book-card", "library-book");
 
         const progress = (Number(book.pagesRead) / Number(book.pages)) * 100;
 
@@ -284,6 +285,7 @@ function deleteBook(index) {
         CompletedBooks();
         displayReadingCount();
         displayGenreChart();
+        loadFilters();
     }
 }
 
@@ -459,10 +461,128 @@ if (status.value === "Want to Read" || status.value === "Completed") {
     pagesRead.disabled = true;
 }
 
+//to filter by genre and author
+const genreFilter = document.getElementById("genreFilter");
+const authorFilter = document.getElementById("authorFilter");
+const sortBooks = document.getElementById("sortBooks");
+
+function loadFilters() {
+
+    genreFilter.innerHTML = '<option value="All">All Genres</option>';
+    authorFilter.innerHTML = '<option value="All">All Authors</option>';
+
+    const genres = [];
+    const authors = [];
+
+    books.forEach(function (book) {
+
+        if (!genres.includes(book.genre)) {
+            genres.push(book.genre);
+        }
+
+        if (!authors.includes(book.author)) {
+            authors.push(book.author);
+        }
+
+    });
+
+    genres.forEach(function (genre) {
+        const option = document.createElement("option");
+
+        option.value = genre;
+        option.textContent = genre;
+
+        genreFilter.appendChild(option);
+    });
+
+    authors.forEach(function (author) {
+        const option = document.createElement("option");
+
+        option.value = author;
+        option.textContent = author;
+
+        authorFilter.appendChild(option);
+    });
+}
+
+function filterAndSortBooks() {
+
+    let filteredBooks = books.filter(function (book) {
+
+        const genreMatch =
+            genreFilter.value === "All" ||
+            book.genre === genreFilter.value;
+
+        const authorMatch =
+            authorFilter.value === "All" ||
+            book.author === authorFilter.value;
+
+        return genreMatch && authorMatch;
+    });
+    if (sortBooks.value === "recent") {
+
+        filteredBooks.reverse();
+
+    }
+    else if (sortBooks.value === "az") {
+
+        filteredBooks.sort(function (a, b) {
+            return a.bookname.localeCompare(b.bookname);
+        });
+
+    }
+    else if (sortBooks.value === "za") {
+
+        filteredBooks.sort(function (a, b) {
+            return b.bookname.localeCompare(a.bookname);
+        });
+
+    }
+
+    displayFilteredBooks(filteredBooks);
+}
+
+// display the genre and author books
+function displayFilteredBooks(filteredBooks) {
+
+    showBooks.innerHTML = "";
+
+    filteredBooks.forEach(function (book) {
+
+        const bookCard = document.createElement("div");
+        bookCard.classList.add("book-card", "library-book");
+
+        const progress =
+            (Number(book.pagesRead) / Number(book.pages)) * 100;
+
+        bookCard.innerHTML = `
+            <h3 style="font-size: ${book.bookname.length > 25 ? "16px" : "22px"}">${book.bookname}</h3>
+            <p><strong>Author: </strong>${book.author}</p>
+            <p><strong>Genre: </strong>${book.genre}</p>
+            <p><strong>Pages: </strong>${book.pages}</p>
+            <p><strong>Pages Read: </strong>${book.pagesRead}</p>
+            <p><strong>Status: </strong>${book.status}</p>
+            <p><strong>Progress: </strong>${progress.toFixed(0)}%</p>
+
+            <div class="progress-bar">
+                <div class="progress-fill"
+                     style="width: ${progress}%">
+                </div>
+            </div>
+        `;
+
+        showBooks.appendChild(bookCard);
+    });
+}
+
+genreFilter.addEventListener("change", filterAndSortBooks);
+authorFilter.addEventListener("change", filterAndSortBooks);
+sortBooks.addEventListener("change", filterAndSortBooks);
+
 displayBooks();
 WanttoReadBooks();
 CurrentlyReadingBooks();
 CompletedBooks();
 displayReadingCount();
-
 displayGenreChart();
+loadFilters();

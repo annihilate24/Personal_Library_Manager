@@ -73,7 +73,7 @@
                     <input id="bookname" type="text" placeholder="Enter the book name"></input>
                     <button type="button" id="fetchBtn">Search</button>
                 </div>
-                
+
                 <label>Author:</label>
                 <input id="author" type="text" placeholder="Enter the book author"></input>
                 <label>Genre:</label>
@@ -96,6 +96,26 @@
         <section id="library-page" class="page-view">
             <h1>My library</h1>
             <p>All cataloged books in your personal collection.</p>
+            <div class="filter-sort">
+
+                <label>Filter by Genre:</label>
+                <select id="genreFilter">
+                    <option value="All">All Genres</option>
+                </select>
+
+                <label>Filter by Author:</label>
+                <select id="authorFilter">
+                    <option value="All">All Authors</option>
+                </select>
+
+                <label>Sort By:</label>
+                <select id="sortBooks">
+                    <option value="recent">Recently Added</option>
+                    <option value="az">Alphabetical (A-Z)</option>
+                    <option value="za">Alphabetical (Z-A)</option>
+                </select>
+
+            </div>
             <div id="showBooks">
 
             </div>
